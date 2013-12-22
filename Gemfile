@@ -5,12 +5,12 @@ gem 'rails', '4.0.2'
 
 # Use mysql as the database for Active Record
 
-group :development do
-  gem 'mysql'
-end
+#group :development do
+#  gem 'mysql'
+#end
 
 #group :production do
-#  gem 'pg'
+  gem 'pg'
 #end
 
 # Use SCSS for stylesheets
@@ -50,3 +50,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'rails_12factor', group: :production
