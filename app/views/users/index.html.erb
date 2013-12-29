@@ -1,0 +1,23 @@
+<h1> Listing users </h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+
+<% @users.each do |user| %>
+    <tr>
+      <td> <%= user.email %> </td>
+      <td> <%= user.role %> </td>
+      <td> <%= link_to "Edit", edit_admin_user_path(current_user, user) unless user.role?(:super_admin) %> </td>
+      <td> <%= link_to "delete", admin_user_path(current_user, user), :method => :delete, :confirm => "Are you sure?", :title => "Delete user" unless user.role?(:super_admin) %> </td>
+    </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_admin_user_path %>
+<%= link_to 'Admin Page', admins_path %>
