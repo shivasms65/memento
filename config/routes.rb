@@ -8,9 +8,10 @@ Memento::Application.routes.draw do
 
    resources :admins do
      resources :users
+     resources :contacts, :only => [:index, :destroy]
    end
 
-
+   resources :contacts, :only => [:new, :create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
