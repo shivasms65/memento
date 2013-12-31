@@ -52,4 +52,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor', group: :production
+
 gem "devise", "~> 3.2.2"
+
+gem 'meta-tags', :require => 'meta_tags'

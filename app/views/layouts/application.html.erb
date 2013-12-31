@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Memento</title>
+  <%= display_meta_tags :site => 'Mementotechnologies', :title => 'Home', :reverse => true %>
+  <% set_meta_tags :title => 'Mementotechnologies', :description => 'Member login page.', :keywords => 'memento, mementotechnologies, memento technologies' %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
