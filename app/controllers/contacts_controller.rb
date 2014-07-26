@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.where(id: params[:id]).first
     @contact.destroy
-    redirect_to admin_contacts_path
+    redirect_to admins_contacts_path
   end
 
   private

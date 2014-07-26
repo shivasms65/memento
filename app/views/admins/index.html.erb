@@ -1,7 +1,7 @@
 Administration
 <% set_meta_tags :title => 'Admin Dashboard', :description => 'Mementotechnologies is a web development company.', :keywords => 'memento, mementotechnologies, memento technologies' %>
-<%= link_to 'Manage Users', admin_users_path(current_user) %>
-<%= link_to 'Manage Contacts', admin_contacts_path(current_user) %>
+<%= link_to 'Manage Users', admins_users_path(current_user) %>
+<%= link_to 'Manage Contacts', admins_contacts_path(current_user) %>
 
 
 <%= link_to "Logout",  destroy_user_session_path, :method => :delete  %>

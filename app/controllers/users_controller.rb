@@ -49,6 +49,10 @@ class UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def show
+    # TODO: have to update later
+  end
+
   private
 
   def user_params
