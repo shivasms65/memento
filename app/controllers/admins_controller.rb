@@ -10,7 +10,7 @@ class AdminsController < ApplicationController
     if current_user
       redirect_to '/admins'
     else
-      render "devise/sessions/new"
+      redirect_to "/login"
     end
   end
 end

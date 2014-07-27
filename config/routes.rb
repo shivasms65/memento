@@ -8,6 +8,10 @@ Memento::Application.routes.draw do
 
    resources :admins
 
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+  end
+
   namespace :admins do
     resources :users
     resources :contacts, :only => [:index, :show, :destroy]

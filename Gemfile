@@ -5,13 +5,8 @@ gem 'rails', '4.0.2'
 
 # Use mysql as the database for Active Record
 
-#group :development do
-#  gem 'mysql'
-#end
-
-#group :production do
-  gem 'pg'
-#end
+gem 'mysql2'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -56,3 +51,7 @@ gem 'rails_12factor', group: :production
 gem "devise", "~> 3.2.2"
 
 gem 'meta-tags', :require => 'meta_tags'
+
+gem 'nokogiri'
+gem "therubyracer"
+gem "twitter-bootstrap-rails"
