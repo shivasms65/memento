@@ -6,20 +6,20 @@ Memento::Application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'homes#index'
 
-   resources :admins
+   # resources :admins
 
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end
 
-  namespace :admins do
+  namespace :admin do
     resources :users
-    resources :contacts, :only => [:index, :show, :destroy]
+    resources :contacts
   end
 
-   resources :contacts, :only => [:new, :create]
+   # resources :contacts, :only => [:new, :create]
 
-  get "/admin" => "admins#admin", :as => "admin_page"
+  get "/admin" => "admins#index", :as => "admins"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

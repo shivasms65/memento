@@ -1,0 +1,67 @@
+<div id="page-wrapper">
+<div class="row">
+  <div class="col-lg-12 page_header_div">
+    <h1 class="page-header">Contacts</h1>
+    <%= link_to "New Contact", new_admin_contact_path, :class => "btn btn-primary new_contact_button" %>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+<div class="col-lg-12">
+<div class="panel panel-default">
+<div class="panel-heading">
+  All Contact Details
+</div>
+<!-- /.panel-heading -->
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-striped table-bordered table-hover" id="contact-table">
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Email</th>
+  <th>Mobile</th>
+  <th>Note</th>
+<!--  <th>Action</th> -->
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+<!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+</div>
+</div>
+</div>
+</div>
+
+<script type="application/javascript">
+    $(document).ready(function() {
+        $('#contact-table').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": $('#contact-table').data('source'),
+            "pagingType": "full_numbers"
+            // optional, if you want full pagination controls.
+            // Check dataTables documentation to learn more aboutcontact-table
+            // available options.
+        });
+    });
+</script>
+
+<style type="text/css">
+    .page_header_div h1
+    {
+        float: left;
+    }
+    .page_header_div .new_contact_button
+    {
+        float: right;
+        margin: 48px 6px 0 0;
+    }
+
+</style>

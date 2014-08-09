@@ -1,8 +1,13 @@
-class ContactsController < ApplicationController
+class Admin::ContactsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_contacts
+  layout "admin"
 
   def index
-    @contacts = Contact.all
+    respond_to do |format|
+      format.html
+      format.json { render json: ContactDatatable.new(view_context) }
+    end
   end
 
   def new
@@ -13,7 +18,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to new_contact_path, notice: 'You have successfully Contacted Us We will get back you soon.' }
+        format.html { redirect_to new_admin_contact_path, notice: 'You have successfully Contacted Us We will get back you soon.' }
         format.json { render json: @contact, status: :created, location: [@contact] }
       else
         format.html { render action: "new" }
@@ -29,6 +34,10 @@ class ContactsController < ApplicationController
   end
 
   private
+
+  def get_contacts
+    @contacts = Contact.all
+  end
 
   def contact_params
     params.require(:contact).permit(:name, :email, :mobile, :note)
