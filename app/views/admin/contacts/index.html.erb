@@ -23,7 +23,7 @@
   <th>Email</th>
   <th>Mobile</th>
   <th>Note</th>
-<!--  <th>Action</th> -->
+  <th class="contact-actions">Actions</th>
 </tr>
 </thead>
 <tbody>
@@ -45,11 +45,15 @@
             "processing": true,
             "serverSide": true,
             "ajax": $('#contact-table').data('source'),
-            "pagingType": "full_numbers"
+            "pagingType": "full_numbers",
             // optional, if you want full pagination controls.
             // Check dataTables documentation to learn more aboutcontact-table
             // available options.
+            "fnDrawCallback": function( oSettings ) {
+                $(".contact-actions").removeClass("sorting")
+            }
         });
+
     });
 </script>
 

@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
   layout 'admin'
 
   def index
-    @contacts = Contact.last(3)
+    @contacts = Contact.last(3).reverse
   end
 
   def admin

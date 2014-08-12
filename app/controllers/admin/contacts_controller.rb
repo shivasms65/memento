@@ -1,4 +1,6 @@
 class Admin::ContactsController < ApplicationController
+  load_and_authorize_resource
+  skip_load_and_authorize_resource :only => [:new, :create]
   before_filter :authenticate_user!
   before_filter :get_contacts
   layout "admin"
@@ -30,13 +32,13 @@ class Admin::ContactsController < ApplicationController
   def destroy
     @contact = Contact.where(id: params[:id]).first
     @contact.destroy
-    redirect_to admins_contacts_path
+    redirect_to admin_contacts_path
   end
 
   private
 
   def get_contacts
-    @contacts = Contact.all
+    @contacts = Contact.last(3).reverse
   end
 
   def contact_params

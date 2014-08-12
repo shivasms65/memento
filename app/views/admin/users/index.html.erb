@@ -11,8 +11,8 @@
     <tr>
       <td> <%= user.email %> </td>
       <td> <%= user.role %> </td>
-      <td> <%= link_to "Edit", edit_admin_user_path(current_user, user) unless user.role?(:super_admin) %> </td>
-      <td> <%= link_to "delete", admin_user_path(current_user, user), :method => :delete, :confirm => "Are you sure?", :title => "Delete user" unless user.role?(:super_admin) %> </td>
+      <td> <%= link_to "Edit", edit_admin_user_path(current_user, user) if can? :update, user  %> </td>
+      <td> <%= link_to "delete", admin_user_path(current_user, user), :method => :delete, :confirm => "Are you sure?", :title => "Delete user" if can? :destroy, user %> </td>
     </tr>
 <% end %>
 </table>

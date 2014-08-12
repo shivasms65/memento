@@ -3,9 +3,22 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin moderator author banned]
+  ROLES = %w[Admin Moderator Author Banned]
 
-  def role?(base_role)
-    return self.role == base_role.to_s
+  def admin?
+    self.role == "Admin"
   end
+
+  def moderator?
+    self.role == "Moderator"
+  end
+
+  def author?
+    self.role == "Author"
+  end
+
+  def banned?
+    self.role == "Banned"
+  end
+
 end

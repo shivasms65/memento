@@ -5,16 +5,18 @@ class ContactDatatable < AjaxDatatablesRails::Base
   # include AjaxDatatablesRails::Extensions::WillPaginate
   # include AjaxDatatablesRails::Extensions::SimplePaginator
 
+  def_delegators :@view, :link_to, :admin_contact_path
+
   def sortable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
-    @sortable_columns ||= ['contacts.name', 'contacts.email', 'contacts.mobile', 'contacts.note']
+    @sortable_columns ||= ['contacts.name', 'contacts.email', 'contacts.mobile', 'contacts.note', "contacts.note"]
   end
 
   def searchable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
-    @searchable_columns ||= ['contacts.name', 'contacts.email', 'contacts.mobile', 'contacts.note']
+    @searchable_columns ||= ['contacts.name', 'contacts.email', 'contacts.mobile', 'contacts.note', "contacts.note"]
   end
 
   private
@@ -27,7 +29,8 @@ class ContactDatatable < AjaxDatatablesRails::Base
         record.name,
         record.email,
         record.mobile,
-        record.note
+        record.note,
+        link_to("Destroy",admin_contact_path(record), :method => "delete")
       ]
     end
   end

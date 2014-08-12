@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   #before_filter :authenticate_user!
-  before_filter do
-    redirect_to :new_user_session_path unless current_user
-  end
+  # before_filter do
+  #   redirect_to :new_user_session_path if (current_user.blank? || !current_user.admin?)
+  # end
 
   def index
     @users = User.all
@@ -14,6 +15,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
+    p user_params
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
@@ -56,6 +58,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
+    p params
     params.require(:user).permit(:email, :password, :password_confirmation, :role)
   end
 
