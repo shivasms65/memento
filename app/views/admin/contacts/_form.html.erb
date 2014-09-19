@@ -1,0 +1,101 @@
+<% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2> <%= pluralize(@contact.errors.count, "error") %> prohibited this user from being saved: </h2>
+      <ul>
+        <% @contact.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<div class="field">
+  <%= f.label :name %> <br />
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :organization_name %> <br />
+  <%= f.text_field :organization_name %>
+</div>
+
+<div class="field">
+  <%= f.label :type_of_organization %> <br />
+  <%= f.select :type_of_organization, options_for_select(@type_of_organizations), {}, {:class => "org_dropdown"} %>
+  <%= text_field_tag :new_type_of_organization, nil, :class => "org_text_field" %>
+</div>
+
+<div class="field">
+  <%= f.label :email %> <br />
+  <%= f.text_field :email %>
+</div>
+
+<div class="field">
+  <%= f.label :type_of_service %> <br />
+  <%= f.text_field :type_of_service %>
+</div>
+
+<div class="field">
+  <%= f.label :mobile %><br />
+  <%= f.text_field :mobile %>
+</div>
+
+<div class="field">
+  <%= f.label :exp_price_range %><br />
+  <%= f.select :exp_price_range, options_for_select(@price_ranges) %>
+</div>
+
+<div class="field">
+  <%= f.label :note %><br />
+  <%= f.text_area :note %>
+</div>
+
+<% if current_user %>
+    <div class="field">
+      <%= f.label :service_convinced %><br />
+      <%= f.text_field :service_convinced %>
+    </div>
+
+    <div class="field">
+      <%= f.label :process_line %><br />
+      <%= f.select :process_line, options_for_select(@pipelines) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :remarks %><br />
+      <%= f.text_field :remarks %>
+    </div>
+<% end %>
+
+
+
+<script type="application/javascript">
+    $("document").ready(function()
+    {
+        var dropdown_val = $(".org_dropdown").val()
+        console.log(dropdown_val)
+        if (dropdown_val == "Others")
+        {
+            change_to_org_text_field()
+        }
+        else
+        {
+            $(".org_dropdown").show()
+            $(".org_text_field").hide()
+        }
+
+        $(".org_dropdown").change(function()
+        {
+            var val = $(this).val()
+            console.log(val)
+            if (val == "Others")
+                change_to_org_text_field()
+        })
+
+        function change_to_org_text_field()
+        {
+            $(".org_dropdown").hide()
+            $(".org_text_field").show()
+        }
+    })
+</script>
