@@ -16,7 +16,7 @@
 <!-- /.panel-heading -->
 <div class="panel-body">
 <div class="table-responsive">
-<table class="table table-striped table-bordered table-hover" id="contact-table">
+<table class="table table-striped table-bordered table-hover" id="contact-table" data-source="<%= admin_contacts_path(format: :json) %>">
 <thead>
 <tr>
   <th>Name</th>
@@ -27,7 +27,7 @@
   <th>Type of Service</th>
   <th>Price Range</th>
   <th>Note</th>
-  <th>Service Convinced</th>
+  <th>test</th>
   <th>Process Line</th>
   <th>Remarks</th>
   <th class="contact-actions">Actions</th>
@@ -47,16 +47,16 @@
 </div>
 
 <script type="application/javascript">
+    var editor;
+
     $(document).ready(function() {
         $('#contact-table').dataTable({
-            "processing": true,
-            "serverSide": true,
-            "ajax": $('#contact-table').data('source'),
-            "pagingType": "full_numbers",
-            // optional, if you want full pagination controls.
-            // Check dataTables documentation to learn more aboutcontact-table
-            // available options.
-            "fnDrawCallback": function( oSettings ) {
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            ajax: $('#contact-table').data('source'),
+            pagingType: "full_numbers",
+            fnDrawCallback: function( oSettings ) {
                 $(".contact-actions").removeClass("sorting")
             }
         });
