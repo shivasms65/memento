@@ -14,7 +14,12 @@ Memento::Application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :contacts
+    resources :contacts do
+      collection do
+        get "send_mail_form"
+        post "send_mail_to_contacts"
+      end
+    end
   end
 
    # resources :contacts, :only => [:new, :create]

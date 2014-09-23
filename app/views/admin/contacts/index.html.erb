@@ -3,6 +3,7 @@
   <div class="col-lg-12 page_header_div">
     <h1 class="page-header">Contacts</h1>
     <%= link_to "New Contact", new_admin_contact_path, :class => "btn btn-primary new_contact_button" %>
+    <%= link_to "Send Mail", send_mail_form_admin_contacts_path, :class => "btn btn-primary send_mail_to_contacts" %>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -69,7 +70,7 @@
     {
         float: left;
     }
-    .page_header_div .new_contact_button
+    .page_header_div .new_contact_button, .page_header_div .send_mail_to_contacts
     {
         float: right;
         margin: 48px 6px 0 0;

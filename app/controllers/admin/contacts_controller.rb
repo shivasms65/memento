@@ -59,17 +59,33 @@ class Admin::ContactsController < ApplicationController
     redirect_to admin_contacts_path
   end
 
+  def send_mail_form
+    @process_lines = ["New", "Pipeline", "Potential", "Observed", "Consumer"]
+  end
+
+  def send_mail_to_contacts
+    mailer = sent_mail_params
+    p to_list = Contact.where(:process_line => mailer[:process_line]).map(&:email)
+    to_list = ["shiva.sms65@gmail.com", "genetech003@gmail.com"] if Rails.env == "development" # TODO have to remove
+    Contact.send_mails_to_contacts(to_list, mailer[:subject], mailer[:body], mailer[:file])
+    flash[:notice] = "Successfully Sent Mail to Contacts"
+    redirect_to send_mail_form_admin_contacts_path
+  end
+
   private
 
   def get_contacts
     @contacts = Contact.last(3).reverse
   end
 
+  def sent_mail_params
+    params.require(:mailer).permit(:subject, :body, :file, :process_line)
+  end
+
   def contact_params
     if params[:contact][:type_of_organization] == "Others"
       params[:contact][:type_of_organization] = params[:new_type_of_organization]
     end
-    p params
     params.require(:contact).permit(:name, :email, :mobile, :note, :organization_name, :type_of_service, :exp_price_range, :type_of_organization, :service_convinced, :process_line, :remarks)
   end
 
