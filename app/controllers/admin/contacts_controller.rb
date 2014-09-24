@@ -66,9 +66,13 @@ class Admin::ContactsController < ApplicationController
   def send_mail_to_contacts
     mailer = sent_mail_params
     to_list = Contact.where(:process_line => mailer[:process_line]).map(&:email)
-    to_list = ["shiva.sms65@gmail.com", "genetech003@gmail.com"] if Rails.env == "development" # TODO have to remove
+    # to_list = ["shiva.sms65@gmail.com", "genetech003@gmail.com"] if Rails.env == "development" # TODO have to remove
     Contact.send_mails_to_contacts(to_list, mailer[:subject], mailer[:body], mailer[:file])
-    flash[:notice] = "Successfully Sent Mail to Contacts"
+    if to_list.blank?
+      flash[:error] = "No Contacts in Process Line is '#{mailer[:process_line]}'"
+    else
+      flash[:notice] = "Successfully Sent Mails to Contacts for Process Line is '#{mailer[:process_line]}'"
+    end
     redirect_to send_mail_form_admin_contacts_path
   end
 
