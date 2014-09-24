@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-lg-12 page_header_div">
       <h1 class="page-header">Contacts</h1>
-      <%= link_to "New Contact", new_admin_contact_path, :class => "btn btn-primary new_contact_button" %>
     </div>
     <!-- /.col-lg-12 -->
   </div>
@@ -11,7 +10,7 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          All Contact Details
+          New Contact
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -19,8 +18,8 @@
             <%= form_for [:admin, @contact] do |f| %>
                 <%= render :partial => "form", :locals => {:f => f} %>
                 <div class="actions">
-                  <%= f.submit %>
-                  <%= link_to "Cancel", admin_contacts_path %>
+                  <%= f.submit :class => "btn btn-primary" %>
+                  <%= link_to "Cancel", admin_contacts_path, :class => "btn btn-primary" %>
                 </div>
             <% end %>
           </div>
@@ -31,3 +30,11 @@
     </div>
   </div>
 </div>
+
+
+<script type="application/javascript">
+  $(document).ready(function()
+  {
+      $("form").validator();
+  })
+</script>

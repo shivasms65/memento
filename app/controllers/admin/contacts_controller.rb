@@ -65,7 +65,7 @@ class Admin::ContactsController < ApplicationController
 
   def send_mail_to_contacts
     mailer = sent_mail_params
-    p to_list = Contact.where(:process_line => mailer[:process_line]).map(&:email)
+    to_list = Contact.where(:process_line => mailer[:process_line]).map(&:email)
     to_list = ["shiva.sms65@gmail.com", "genetech003@gmail.com"] if Rails.env == "development" # TODO have to remove
     Contact.send_mails_to_contacts(to_list, mailer[:subject], mailer[:body], mailer[:file])
     flash[:notice] = "Successfully Sent Mail to Contacts"
