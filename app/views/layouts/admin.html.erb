@@ -15,6 +15,8 @@
   <%= javascript_include_tag "/assets/admin/sb-admin-2.js" %>
   <%= javascript_include_tag "/assets/admin/dataTables.responsive.js" %>
   <%= javascript_include_tag "/assets/admin/validator.js" %>
+  <%= javascript_include_tag "/assets/admin/moment.js" %>
+  <%= javascript_include_tag "/assets/admin/bootstrap-datetimepicker.js" %>
 
   <%= stylesheet_link_tag :application %>
   <%= stylesheet_link_tag '/assets/admin/bootstrap.min.css' %>
@@ -23,6 +25,7 @@
   <%= stylesheet_link_tag "/assets/admin/sb-admin-2.css" %>
   <%= stylesheet_link_tag "/assets/admin/sb-admin-2.css" %>
   <%= stylesheet_link_tag "/assets/admin/dataTables.responsive.css" %>
+  <%= stylesheet_link_tag "/assets/admin/bootstrap-datetimepicker.min.css" %>
   <%= stylesheet_link_tag "/assets/admin/font-awesome-4.1.0/css/font-awesome.min.css" %>
 
   <title>Admin Dashboard - Mementotechnologies</title>
@@ -59,7 +62,8 @@
     <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
   </a>
   <ul class="dropdown-menu dropdown-messages">
-    <% @contacts.each do |each_contact| %>
+    <% contacts = get_contacts_for_layout() %>
+    <% contacts.each do |each_contact| %>
       <li>
         <a href="<%= admin_contacts_path(each_contact) %>">
           <div>
@@ -192,6 +196,9 @@
       </li> -->
       <li>
         <a href="<%= admin_contacts_path %>"><i class="fa fa-table fa-fw"></i> Contacts</a>
+      </li>
+      <li>
+        <a href="<%= admin_projects_path %>"><i class="fa fa-table fa-fw"></i> Projects</a>
       </li>
       <li>
         <a href="<%= admin_users_path %>"><i class="fa fa-edit fa-fw"></i> Manage Users</a>

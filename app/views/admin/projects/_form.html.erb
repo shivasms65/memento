@@ -1,0 +1,44 @@
+<% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2> <%= pluralize(@project.errors.count, "error") %> prohibited this user from being saved: </h2>
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :name, :class => "control-label" %>
+  <%= f.text_field :name, :class => "form-control", :required => true %>
+</div>
+
+<div class="form-group">
+  <%= f.label :process_line, :class => "control-label" %>
+  <%= f.select :process_line, options_for_select(@process_lines), {}, {:class => "form-control"} %>
+</div>
+
+<div class="form-group date">
+  <%= f.label :effective_date, :class => "control-label" %>
+  <%= f.text_field :effective_date, :class => "date_picker" %>
+</div>
+
+<div class="form-group date">
+  <%= f.label :expected_end_date, :class => "control-label" %>
+  <%= f.text_field :expected_end_date, :class => "date_picker" %>
+</div>
+
+<div class="form-group date">
+  <%= f.label :meeting_time, :class => "control-label" %>
+  <%= f.text_field :meeting_time, :class => "date_picker" %>
+</div>
+
+<script type="application/javascript">
+  $(function()
+  {
+    $(".date_picker").datetimepicker({
+        pickTime: false
+    })
+  })
+</script>
