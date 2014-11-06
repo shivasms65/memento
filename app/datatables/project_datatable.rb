@@ -29,9 +29,12 @@ class ProjectDatatable < AjaxDatatablesRails::Base
           # example: record.attribute,
           record.name,
           record.process_line,
-          record.effective_date.blank? ? "" : record.effective_date.strftime("%m/%d/%Y"),
-          record.expected_end_date.blank? ? "" : record.expected_end_date.strftime("%m/%d/%Y"),
-          record.meeting_time.blank? ? "" : record.meeting_time.strftime("%m/%d/%Y %R %p"),
+          # record.effective_date.blank? ? "" : record.effective_date.strftime("%m/%d/%Y"),
+          # record.expected_end_date.blank? ? "" : record.expected_end_date.strftime("%m/%d/%Y"),
+          # record.meeting_time.blank? ? "" : record.meeting_time.strftime("%m/%d/%Y %R %p"),
+          record.effective_date,
+          record.expected_end_date,
+          record.meeting_time,
           record.remarks,
           # link_to("Edit","javascript:void(0)") + "   " + link_to("Destroy",admin_contact_path(record), :method => "delete")
           link_to("Edit", edit_admin_project_path(record)) + " |  " + link_to("Destroy",admin_project_path(record), :method => "delete")
