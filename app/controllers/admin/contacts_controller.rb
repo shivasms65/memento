@@ -4,6 +4,7 @@ class Admin::ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_contacts
   before_filter :define_arrays_for_form, :except => [:index, :destroy]
+  before_filter :get_contact, :only => [:edit, :update, :destroy]
   layout "admin"
 
   def index
@@ -35,13 +36,7 @@ class Admin::ContactsController < ApplicationController
     end
   end
 
-  def edit
-    @contact = Contact.where(:id => params[:id]).last
-  end
-
   def update
-    @contact = Contact.where(:id => params[:id]).last
-
     respond_to do |format|
       if @contact.update_attributes(contact_params)
         format.html { redirect_to admin_contacts_path, notice: 'You have successfully Updated' }
@@ -54,7 +49,6 @@ class Admin::ContactsController < ApplicationController
   end
 
   def destroy
-    @contact = Contact.where(id: params[:id]).first
     @contact.destroy
     redirect_to admin_contacts_path
   end
@@ -98,5 +92,9 @@ class Admin::ContactsController < ApplicationController
     @type_of_organizations << "Others"
     @price_ranges = ["0-30k", "30k-60k", "60k-90k", "90k>"]
     @pipelines = ["New", "Pipeline", "Potential", "Observed", "Consumer"]
+  end
+
+  def get_contact
+    @contact = Contact.where(:id => params[:id]).last
   end
 end

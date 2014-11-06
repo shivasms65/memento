@@ -10,7 +10,8 @@ class ProjectDatatable < AjaxDatatablesRails::Base
   def sortable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
-    @sortable_columns ||= ['projects.name', 'projects.process_line', 'projects.effective_date', 'projects.expected_end_date', 'projects.meeting_time', 'projects.remarks']
+    @sortable_columns ||= ['projects.name', 'projects.process_line', 'projects.effective_date', 'projects.expected_end_date', 'projects.meeting_time
+', 'projects.remarks']
   end
 
   def searchable_columns
@@ -28,12 +29,12 @@ class ProjectDatatable < AjaxDatatablesRails::Base
           # example: record.attribute,
           record.name,
           record.process_line,
-          record.effective_date,
-          record.expected_end_date,
-          record.meeting_date,
+          record.effective_date.blank? ? "" : record.effective_date.strftime("%m/%d/%Y"),
+          record.expected_end_date.blank? ? "" : record.expected_end_date.strftime("%m/%d/%Y"),
+          record.meeting_time.blank? ? "" : record.meeting_time.strftime("%m/%d/%Y %R %p"),
           record.remarks,
           # link_to("Edit","javascript:void(0)") + "   " + link_to("Destroy",admin_contact_path(record), :method => "delete")
-          link_to("Edit", edit_admin_project_path(record)) + "   " + link_to("Destroy",admin_project_path(record), :method => "delete")
+          link_to("Edit", edit_admin_project_path(record)) + " |  " + link_to("Destroy",admin_project_path(record), :method => "delete")
       ]
     end
   end
