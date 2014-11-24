@@ -1,0 +1,71 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12 page_header_div">
+      <h1 class="page-header">Projects Inline</h1>
+      <%= link_to "New Project", new_admin_project_path(:redirect_path => "project_inline_admin_projects_path"), :class => "btn btn-primary new_project_button" %>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          All Project Inline Details
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="contact-table" data-source="<%= project_inline_admin_projects_path(format: :json) %>">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Process Line</th>
+                <th>Responsible Persons</th>
+                <th>Responses</th>
+                <th class="project-actions">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+    var editor;
+
+    $(document).ready(function() {
+        $('#contact-table').dataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            ajax: $('#contact-table').data('source'),
+            pagingType: "full_numbers",
+            fnDrawCallback: function( oSettings ) {
+                $(".project-actions").removeClass("sorting")
+            }
+        });
+
+    });
+</script>
+
+<style type="text/css">
+    .page_header_div h1
+    {
+        float: left;
+    }
+    .page_header_div .new_project_button
+    {
+        float: right;
+        margin: 48px 6px 0 0;
+    }
+
+</style>

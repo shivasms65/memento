@@ -14,7 +14,11 @@ Memento::Application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :projects
+    resources :projects do
+      collection do
+        get "project_inline"
+      end
+    end
     resources :contacts do
       collection do
         get "send_mail_form"

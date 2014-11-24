@@ -1,4 +1,4 @@
-class ProjectDatatable < AjaxDatatablesRails::Base
+class ProjectInlineDatatable < AjaxDatatablesRails::Base
   # uncomment the appropriate paginator module,
   # depending on gems available in your project.
   # include AjaxDatatablesRails::Extensions::Kaminari
@@ -10,14 +10,13 @@ class ProjectDatatable < AjaxDatatablesRails::Base
   def sortable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
-    @sortable_columns ||= ['projects.name', 'projects.process_line', 'projects.effective_date', 'projects.expected_end_date', 'projects.meeting_time
-', 'projects.remarks']
+    @sortable_columns ||= ['projects.name', 'projects.process_line', 'projects.responsibilities', 'projects.mng_responses']
   end
 
   def searchable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
-    @searchable_columns ||= ['projects.name', 'projects.process_line', 'projects.effective_date', 'projects.expected_end_date', 'projects.meeting_time', 'projects.remarks']
+    @searchable_columns ||= ['projects.name', 'projects.process_line', 'projects.responsibilities', 'projects.mng_responses']
   end
 
   private
@@ -29,12 +28,10 @@ class ProjectDatatable < AjaxDatatablesRails::Base
           # example: record.attribute,
           record.name,
           record.process_line,
-          record.effective_date.blank? ? "" : record.effective_date.strftime("%m/%d/%Y"),
-          record.expected_end_date.blank? ? "" : record.expected_end_date.strftime("%m/%d/%Y"),
-          record.meeting_time.blank? ? "" : record.meeting_time.strftime("%m/%d/%Y %R %p"),
-          record.remarks,
+          record.responsibilities,
+          record.mng_responses,
           # link_to("Edit","javascript:void(0)") + "   " + link_to("Destroy",admin_contact_path(record), :method => "delete")
-          link_to("Edit", edit_admin_project_path(record)) + " |  " + link_to("Destroy",admin_project_path(record), :method => "delete")
+          link_to("Edit", edit_admin_project_path(record, :redirect_path => "project_inline_admin_projects_path")) + " |  " + link_to("Destroy",admin_project_path(record, :redirect_path => "project_inline_admin_projects_path"), :method => "delete")
       ]
     end
   end

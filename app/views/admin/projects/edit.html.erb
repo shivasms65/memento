@@ -19,7 +19,7 @@
                 <%= render :partial => "form", :locals => {:f => f} %>
                 <div class="actions">
                   <%= f.submit :class => "btn btn-primary" %>
-                  <%= link_to "Cancel", admin_projects_path, :class => "btn btn-primary" %>
+                  <%= link_to "Cancel", @redirect_path, :class => "btn btn-primary" %>
                 </div>
             <% end %>
           </div>
