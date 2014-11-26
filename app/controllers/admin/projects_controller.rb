@@ -5,6 +5,7 @@ class Admin::ProjectsController < ApplicationController
   before_filter :pre_load, :only => [:new, :edit, :create]
 
   def index
+    @projects = Project.all
     respond_to do |format|
       format.html
       format.json { render json: ProjectDatatable.new(view_context) }

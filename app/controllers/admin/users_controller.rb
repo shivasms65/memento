@@ -52,10 +52,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    p @user = User.where(id: params[:id]).first
-    p @user_attributes = @user.attributes
+    @user = User.where(id: params[:id]).first
+    @user_attributes = @user.attributes
     @user_attributes.delete_if {|k,v| ["reset_password_token", "encrypted_password", "unlock_token"].include?(k)}
-    p @user_attributes
   end
 
   private
