@@ -65,7 +65,7 @@
     <% contacts = get_contacts_for_layout() %>
     <% contacts.each do |each_contact| %>
       <li>
-        <a href="<%= admin_contacts_path(each_contact) %>">
+        <a href="<%= admin_contact_path(each_contact) %>">
           <div>
             <strong><%= each_contact.name %></strong>
             <span class="pull-right text-muted">
@@ -202,6 +202,9 @@
       </li>
       <li>
         <a href="<%= project_inline_admin_projects_path %>"><i class="fa fa-table fa-fw"></i> Projects Inline</a>
+      </li>
+      <li>
+        <a href="<%= admin_finances_path %>"><i class="fa fa-table fa-fw"></i> Finance</a>
       </li>
       <li>
         <a href="<%= admin_users_path %>"><i class="fa fa-edit fa-fw"></i> Manage Users</a>

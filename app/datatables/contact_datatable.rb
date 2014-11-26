@@ -38,7 +38,7 @@ class ContactDatatable < AjaxDatatablesRails::Base
         record.process_line,
         record.remarks,
         # link_to("Edit","javascript:void(0)") + "   " + link_to("Destroy",admin_contact_path(record), :method => "delete")
-        link_to("Edit", edit_admin_contact_path(record)) + "   " + link_to("Destroy",admin_contact_path(record), :method => "delete")
+        link_to("Show", admin_contact_path(record)) + "   " + link_to("Edit", edit_admin_contact_path(record)) + "   " + link_to("Destroy",admin_contact_path(record), :method => "delete")
       ]
     end
   end

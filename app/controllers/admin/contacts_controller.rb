@@ -4,7 +4,7 @@ class Admin::ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_contacts
   before_filter :define_arrays_for_form, :except => [:index, :destroy]
-  before_filter :get_contact, :only => [:edit, :update, :destroy]
+  before_filter :get_contact, :only => [:edit, :update, :show, :destroy]
   layout "admin"
 
   def index
@@ -46,6 +46,10 @@ class Admin::ContactsController < ApplicationController
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
+
   end
 
   def destroy

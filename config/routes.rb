@@ -25,6 +25,13 @@ Memento::Application.routes.draw do
         post "send_mail_to_contacts"
       end
     end
+    resources :finances do
+      collection do
+        get "inflow"
+        get "outflow"
+        get "capital"
+      end
+    end
   end
 
    # resources :contacts, :only => [:new, :create]

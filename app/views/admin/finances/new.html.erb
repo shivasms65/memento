@@ -1,7 +1,7 @@
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12 page_header_div">
-      <h1 class="page-header">Users</h1>
+      <h1 class="page-header">Finance</h1>
     </div>
     <!-- /.col-lg-12 -->
   </div>
@@ -10,16 +10,16 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading finance_name">
-          Edit User
+          New <%= params[:type] %>
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
           <div class="table-responsive">
-            <%= form_for([:admin,@user]) do |f| %>
+            <%= form_for [:admin, @finance] do |f| %>
                 <%= render :partial => "form", :locals => {:f => f} %>
                 <div class="actions">
                   <%= f.submit :class => "btn btn-primary" %>
-                  <%= link_to "Cancel", admin_users_path, :class => "btn btn-primary" %>
+                  <%= link_to "Cancel", admin_finances_path, :class => "btn btn-primary" %>
                 </div>
             <% end %>
           </div>

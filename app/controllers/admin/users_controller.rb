@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
+  layout 'admin'
   #before_filter :authenticate_user!
   # before_filter do
   #   redirect_to :new_user_session_path if (current_user.blank? || !current_user.admin?)
@@ -15,7 +16,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    p user_params
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
@@ -52,13 +52,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    # TODO: have to update later
+    p @user = User.where(id: params[:id]).first
+    p @user_attributes = @user.attributes
+    @user_attributes.delete_if {|k,v| ["reset_password_token", "encrypted_password", "unlock_token"].include?(k)}
+    p @user_attributes
   end
 
   private
 
   def user_params
-    p params
     params.require(:user).permit(:email, :password, :password_confirmation, :role)
   end
 
